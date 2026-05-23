@@ -29,6 +29,7 @@ public class Home {
             WebElement logout_button = driver.findElement(By.className("MuiButton-text"));
             logout_button.click();
 
+            // SLEEP_STMT_10: Wait for Logout to complete
             // Wait for Logout to Complete
             Thread.sleep(3000);
 
@@ -40,6 +41,7 @@ public class Home {
     }
 
     /*
+<<<<<<< ours
      * Returns Boolean if searching for the given product name occurs without any errors
      */
     public Boolean searchForProduct(String product) {
@@ -52,6 +54,13 @@ public class Home {
             searchBoxElement.clear();
             searchBoxElement.sendKeys(product);
 
+=======
+     * Returns Boolean if searching for the given product name occurs without any
+     * errors
+     */
+    public Boolean searchForProduct(String product) {
+        try {
+>>>>>>> theirs
             return true;
         } catch (Exception e) {
             System.out.println("Error while searching for a product: " + e.getMessage());
@@ -63,6 +72,7 @@ public class Home {
      * Returns Array of Web Elements that are search results and return the same
      */
     public List<WebElement> getSearchResults() {
+<<<<<<< ours
         List<WebElement> searchResults = new ArrayList<WebElement>() {};
         try {
             // TODO: CRIO_TASK_MODULE_TEST_AUTOMATION - TEST CASE 03: MILESTONE 1
@@ -72,6 +82,11 @@ public class Home {
             searchResults = driver.findElements(
                     By.xpath("//*[@id='root']/div/div/div[3]/div/div[2]/div/div/div[1]"));
 
+=======
+        List<WebElement> searchResults = new ArrayList<WebElement>() {
+        };
+        try {
+>>>>>>> theirs
             return searchResults;
         } catch (Exception e) {
             System.out.println("There were no search results: " + e.getMessage());
@@ -103,10 +118,16 @@ public class Home {
      */
     public Boolean addProductToCart(String productName) {
         try {
+<<<<<<< ours
             // TODO: CRIO_TASK_MODULE_TEST_AUTOMATION - TEST CASE 05: MILESTONE 4
             /*
              * Iterate through each product on the page to find the WebElement corresponding to the
              * matching productName
+=======
+            /*
+             * Iterate through each product on the page to find the WebElement corresponding
+             * to the matching productName
+>>>>>>> theirs
              * 
              * Click on the "ADD TO CART" button for that element
              * 
@@ -158,6 +179,7 @@ public class Home {
     }
 
     /*
+<<<<<<< ours
      * Return Boolean denoting the status of change quantity of product in cart operation
      */
     public Boolean changeProductQuantityinCart(String productName, int quantity) {
@@ -207,6 +229,18 @@ public class Home {
 
 
             return true;
+=======
+     * Return Boolean denoting the status of change quantity of product in cart
+     * operation
+     */
+    public Boolean changeProductQuantityinCart(String productName, int quantity) {
+        try {
+
+
+
+
+            return false;
+>>>>>>> theirs
         } catch (Exception e) {
             if (quantity == 0)
                 return true;
@@ -223,10 +257,17 @@ public class Home {
             WebElement cartParent = driver.findElement(By.className("cart"));
             List<WebElement> cartContents = cartParent.findElements(By.className("css-zgtx0t"));
 
+<<<<<<< ours
             ArrayList<String> actualCartContents = new ArrayList<String>() {};
             for (WebElement cartItem : cartContents) {
                 actualCartContents.add(
                         cartItem.findElement(By.className("css-1gjj37g")).getText().split("\n")[0]);
+=======
+            ArrayList<String> actualCartContents = new ArrayList<String>() {
+            };
+            for (WebElement cartItem : cartContents) {
+                actualCartContents.add(cartItem.findElement(By.className("css-1gjj37g")).getText().split("\n")[0]);
+>>>>>>> theirs
             }
 
             for (String expected : expectedCartContents) {

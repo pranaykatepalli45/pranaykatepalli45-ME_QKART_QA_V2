@@ -1,8 +1,13 @@
 package QKART_SANITY_LOGIN.Module1;
 
+<<<<<<< ours
 import java.sql.Driver;
 import java.util.List;
 import java.util.ArrayList;
+=======
+import java.util.List;
+
+>>>>>>> theirs
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -19,6 +24,7 @@ public class SearchResult {
     }
 
     /*
+<<<<<<< ours
      * Return title of the parentElement denoting the card content section of a search result
      */
     public String getTitleofResult() {
@@ -30,6 +36,13 @@ public class SearchResult {
         titleOfSearchResult = ele.getText();
         // System.out.println(titleOfSearchResult);
 
+=======
+     * Return title of the parentElement denoting the card content section of a
+     * search result
+     */
+    public String getTitleofResult() {
+        String titleOfSearchResult = "";
+>>>>>>> theirs
         return titleOfSearchResult;
     }
 
@@ -39,6 +52,7 @@ public class SearchResult {
     public Boolean openSizechart() {
         try {
 
+<<<<<<< ours
             // TODO: CRIO_TASK_MODULE_TEST_AUTOMATION - TEST CASE 04: MILESTONE 2
             // Find the link of size chart in the parentElement and click on it
             WebElement sizeChart = parentElement.findElement(By.xpath("//button[text()='Size chart']"));
@@ -46,6 +60,9 @@ public class SearchResult {
             Thread.sleep(3000);
             return true;
 
+=======
+            return true;
+>>>>>>> theirs
         } catch (Exception e) {
             System.out.println("Exception while opening Size chart: " + e.getMessage());
             return false;
@@ -77,6 +94,7 @@ public class SearchResult {
     public Boolean verifySizeChartExists() {
         Boolean status = false;
         try {
+<<<<<<< ours
             // TODO: CRIO_TASK_MODULE_TEST_AUTOMATION - TEST CASE 04: MILESTONE 2
             /*
              * Check if the size chart element exists. If it exists, check if the text of the
@@ -87,6 +105,13 @@ public class SearchResult {
             if (sizeChartlink.getText().equalsIgnoreCase("SIZE CHART")) {
                 status = true;
             }
+=======
+            /*
+             * Check if the size chart element exists. If it exists, check if the text of
+             * the element is "SIZE CHART". If the text "SIZE CHART" matches for the
+             * element, set status = true , else set to false
+             */
+>>>>>>> theirs
             return status;
         } catch (Exception e) {
             return status;
@@ -94,6 +119,7 @@ public class SearchResult {
     }
 
     /*
+<<<<<<< ours
      * Return Boolean if the table headers and body of the size chart matches the expected values
      */
     public Boolean validateSizeChartContents(List<String> expectedTableHeaders,
@@ -142,6 +168,24 @@ public class SearchResult {
                 }
             }
 
+=======
+     * Return Boolean if the table headers and body of the size chart matches the
+     * expected values
+     */
+    public Boolean validateSizeChartContents(List<String> expectedTableHeaders, List<List<String>> expectedTableBody,
+            WebDriver driver) {
+        Boolean status = true;
+        try {
+            /*
+             * Locate the table element when the size chart modal is open
+             * 
+             * Validate that the contents of expectedTableHeaders is present as the table
+             * header in the same order
+             * 
+             * Validate that the contents of expectedTableBody are present in the table body
+             * in the same order
+             */
+>>>>>>> theirs
             return status;
 
         } catch (Exception e) {
@@ -156,14 +200,22 @@ public class SearchResult {
     public Boolean verifyExistenceofSizeDropdown(WebDriver driver) {
         Boolean status = false;
         try {
+<<<<<<< ours
             // TODO: CRIO_TASK_MODULE_TEST_AUTOMATION - TEST CASE 04: MILESTONE 2
             // If the size dropdown exists and is displayed return true, else return false
             WebElement sizeDropdown = driver.findElement(By.xpath("//*[@id='root']/div/div/div[3]/div/div[2]/div[1]/div/div[2]/div/div"));
             status = sizeDropdown.isDisplayed();
             return status;
 
+=======
+            return status;
+>>>>>>> theirs
         } catch (Exception e) {
             return status;
         }
     }
+<<<<<<< ours
 }
+=======
+}
+>>>>>>> theirs
