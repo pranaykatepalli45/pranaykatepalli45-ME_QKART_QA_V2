@@ -48,7 +48,12 @@ public class Login {
 
         // SLEEP_STMT_13: Wait for Login to Complete
         // Wait for Login action to complete
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
+        FluentWait<RemoteWebDriver> fluentWait = new FluentWait<RemoteWebDriver>(driver);
+        fluentWait.withTimeout(Duration.ofSeconds(30));
+        fluentWait.pollingEvery(Duration.ofMillis(250));
+
+        fluentWait.until(ExpectedConditions.invisibilityOf(login_button));
 
         return this.VerifyUserLoggedIn(Username);
     }

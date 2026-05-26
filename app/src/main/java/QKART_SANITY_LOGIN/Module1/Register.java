@@ -37,7 +37,7 @@ public class Register {
             // Concatenate the timestamp to string to form unique timestamp
             test_data_username = Username + "_" + String.valueOf(timestamp.getTime());
         else
-        test_data_username = Username;
+            test_data_username = Username;
 
         // Type the generated username in the username field
         username_txt_box.sendKeys(test_data_username);
@@ -62,9 +62,16 @@ public class Register {
         // Click the register now button
         register_now_button.click();
         // Wait for registration to complete
-        Thread.sleep(3000);
+        // Thread.sleep(3000);
 
         // SLEEP_STMT_06: Wait for new user to get created in the backend
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 3);
+        if (makeUsernameDynamic) {
+            webDriverWait.until(ExpectedConditions.urlContains("/login"));
+        } else {
+            webDriverWait.until(
+                    ExpectedConditions.presenceOfElementLocated(By.id("notistack-snackbar")));
+        }
 
         this.lastGeneratedUsername = test_data_username;
 
