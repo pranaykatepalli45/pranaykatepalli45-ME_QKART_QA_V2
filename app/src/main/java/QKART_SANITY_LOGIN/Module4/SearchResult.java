@@ -25,7 +25,7 @@ public class SearchResult {
         String titleOfSearchResult = "";
         // Find the element containing the title (product name) of the search result and
         // assign the extract title text to titleOfSearchResult
-        WebElement element = parentElement.findElement(By.className("css-yg30e6"));
+        WebElement element = parentElement.findElement(By.xpath("p[1]"));
         titleOfSearchResult = element.getText();
         return titleOfSearchResult;
     }
@@ -37,7 +37,7 @@ public class SearchResult {
     public Boolean openSizechart() {
         try {
             // Find the link of size chart in the parentElement and click on it
-            WebElement element = parentElement.findElement(By.tagName("button"));
+            WebElement element = parentElement.findElement(By.xpath(".//button[text()='Size chart']"));
             element.click();
 
             Thread.sleep(3000);

@@ -26,15 +26,15 @@ public class Checkout {
      * Return Boolean denoting the status of adding a new address
      */
     public Boolean addNewAddress(String addresString) {
-        try {
+        /*try {
             /*
              * Click on the "Add new address" button, enter the addressString in the address
              * text box and click on the "ADD" button to save the address
-             */
+             
             WebElement addNewAddressButton = driver.findElement(By.id("add-new-btn"));
             addNewAddressButton.click();
 
-            WebElement AddressBox = driver.findElement(By.className("MuiOutlinedInput-input"));
+            WebElement AddressBox = driver.findElement(By.xpath("//textarea[@placeholder = 'Enter your complete address']"));
             AddressBox.clear();
             AddressBox.sendKeys(addresString);
 
@@ -54,6 +54,36 @@ public class Checkout {
             System.out.println("Exception occurred while entering address: " + e.getMessage());
             return false;
 
+        }*/
+        try {
+            // TODO: CRIO_TASK_MODULE_TEST_AUTOMATION - TEST CASE 05: MILESTONE 4
+            /*
+             * Click on the "Add new address" button, enter the addressString in the address text
+             * box and click on the "ADD" button to save the address
+             */
+            WebElement addNewAddress =
+                    driver.findElement(By.xpath("//button[text()='Add new address']"));
+            addNewAddress.click();
+            // SLEEP_STMT_14
+            // Thread.sleep(2000);
+
+            WebElement textArea = driver.findElement(
+                    By.xpath("//textarea[@placeholder = 'Enter your complete address']"));
+            textArea.sendKeys(addresString);
+
+            WebElement addButton = driver.findElement(By.xpath("//button[text()='Add']"));
+            addButton.click();
+
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 3);
+
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(
+                    By.xpath("//*[@id='root']/div/div/div/div/div/div/div/p")));
+
+            return true;
+        } catch (Exception e) {
+            System.out.println("Exception occurred while entering address: " + e.getMessage());
+            return false;
+
         }
     }
 
@@ -61,11 +91,11 @@ public class Checkout {
      * Return Boolean denoting the status of selecting an available address
      */
     public Boolean selectAddress(String addressToSelect) {
-        try {
+        /*try {
             /*
              * Iterate through all the address boxes to find the address box with matching
              * text, addressToSelect and click on it
-             */
+             
             WebElement parentBox = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[1]/div/div[1]"));
             List<WebElement> allBoxes = parentBox.findElements(By.className("not-selected"));
 
@@ -81,6 +111,32 @@ public class Checkout {
         } catch (Exception e) {
             System.out.println("Exception Occurred while selecting the given address: " + e.getMessage());
             return false;
+        }*/
+        
+        try {
+            // TODO: CRIO_TASK_MODULE_TEST_AUTOMATION - TEST CASE 05: MILESTONE 4
+            /*
+             * Iterate through all the address boxes to find the address box with matching text,
+             * addressToSelect and click on it
+             */
+
+            List<WebElement> addressElements =
+                    driver.findElements(By.xpath("//*[@id='root']/div/div/div/div/div/div/div/p"));
+
+            for (WebElement addressElement : addressElements) {
+                String text = addressElement.getText();
+                if (text.equals(addressToSelect)) {
+                    addressElement.click();
+                    return true;
+                }
+            }
+
+            System.out.println("Unable to find the given address");
+            return false;
+        } catch (Exception e) {
+            System.out.println(
+                    "Exception Occurred while selecting the given address: " + e.getMessage());
+            return false;
         }
 
     }
@@ -92,7 +148,7 @@ public class Checkout {
     public Boolean placeOrder() {
         try {
             // Find the "PLACE ORDER" button and click on it
-            List<WebElement> elements = driver.findElementsByClassName("css-177pwqq");
+            List<WebElement> elements = driver.findElements(By.xpath("//button[text()='PLACE ORDER']"));
             for (WebElement element : elements) {
                 if (element.getText().equals("PLACE ORDER")) {
                     element.click();
@@ -112,12 +168,22 @@ public class Checkout {
      */
     public Boolean verifyInsufficientBalanceMessage() {
         try {
-            WebElement alertMessage = driver.findElement(By.id("notistack-snackbar"));
+            /*WebElement alertMessage = driver.findElement(By.id("notistack-snackbar"));
             if (alertMessage.isDisplayed()) {
                 if (alertMessage.getText().equals("You do not have enough balance in your wallet for this purchase")) {
                     return true;
                 }
             }
+            return false;*/
+            WebElement err = driver.findElement(By.id("notistack-snackbar"));
+
+            if (err.isDisplayed()) {
+                if (err.getText().equalsIgnoreCase(
+                        "You do not have enough balance in your wallet for this purchase")) {
+                    return true;
+                }
+            }
+
             return false;
         } catch (Exception e) {
             System.out.println("Exception while verifying insufficient balance message: " + e.getMessage());

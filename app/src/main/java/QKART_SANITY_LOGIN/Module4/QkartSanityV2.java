@@ -178,7 +178,7 @@ public class QkartSanityV2 {
 
         // Search for product
         status = homePage.searchForProduct("Gesundheit");
-        if (status) {
+        if (!status) {
             logStatus("TestCase 3", "Test Case Failure. Invalid keyword returned results", "FAIL");
             return false;
         }
@@ -431,9 +431,9 @@ public class QkartSanityV2 {
         Home homePage = new Home(driver);
         homePage.navigateToHome();
         status = homePage.searchForProduct("Stylecon");
-        homePage.addProductToCart("Stylecon 9 Seater RHS Sofa Set ");
+        homePage.addProductToCart("Stylecon 9 Seater RHS Sofa Set");
 
-        homePage.changeProductQuantityinCart("Stylecon 9 Seater RHS Sofa Set ", 10);
+        homePage.changeProductQuantityinCart("Stylecon 9 Seater RHS Sofa Set", 10);
 
         homePage.clickCheckout();
 
@@ -442,7 +442,7 @@ public class QkartSanityV2 {
         checkoutPage.selectAddress("Addr line 1 addr Line 2 addr line 3");
 
         checkoutPage.placeOrder();
-        Thread.sleep(3000);
+        //Thread.sleep(3000);
 
         status = checkoutPage.verifyInsufficientBalanceMessage();
 
@@ -671,8 +671,8 @@ public class QkartSanityV2 {
         homePage.clickCheckout();
 
         Checkout checkoutPage = new Checkout(driver);
-        checkoutPage.addNewAddress("Addr line 1  addr Line 2  addr line 3");
-        checkoutPage.selectAddress("Addr line 1  addr Line 2  addr line 3");
+        checkoutPage.addNewAddress("Addr line 1 addr Line 2 addr line 3");
+        checkoutPage.selectAddress("Addr line 1 addr Line 2 addr line 3");
         checkoutPage.placeOrder();
         Thread.sleep(3000);
 
