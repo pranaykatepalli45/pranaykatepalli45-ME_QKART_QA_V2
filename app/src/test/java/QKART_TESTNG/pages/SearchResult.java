@@ -25,7 +25,8 @@ public class SearchResult {
         String titleOfSearchResult = "";
         // Find the element containing the title (product name) of the search result and
         // assign the extract title text to titleOfSearchResult
-        WebElement element = parentElement.findElement(By.className("css-yg30e6"));
+        //WebElement element = parentElement.findElement(By.className("css-yg30e6"));
+        WebElement element = parentElement.findElement(By.xpath("p[1]"));
         titleOfSearchResult = element.getText();
         return titleOfSearchResult;
     }
@@ -158,7 +159,7 @@ public class SearchResult {
         Boolean status = false;
         try {
             // If the size dropdown exists and is displayed return true, else return false
-            WebElement element = driver.findElement(By.className("css-13sljp9"));
+            WebElement element = driver.findElement(By.xpath("//*[@id='uncontrolled-native']"));
             status = element.isDisplayed();
             return status;
         } catch (Exception e) {
