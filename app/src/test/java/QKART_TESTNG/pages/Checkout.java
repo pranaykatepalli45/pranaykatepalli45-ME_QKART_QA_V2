@@ -29,7 +29,7 @@ public class Checkout {
         /*try {
             /*
              * Click on the "Add new address" button, enter the addressString in the address
-             * text box and click on the "ADD" button to save the address
+             *text box and click on the "ADD" button to save the address
              
             WebElement addNewAddressButton = driver.findElement(By.id("add-new-btn"));
             addNewAddressButton.click();
